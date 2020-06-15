@@ -1,6 +1,7 @@
 import os
 import sys
 import re
+import torch
 
 def string_to_list(string):
     if isinstance(string, str):
@@ -13,9 +14,7 @@ def string_to_list(string):
 
 def multi_gpu_model_device(device_ids, model):
     device_type = f"cuda:{device_ids[0]}"
-    print(device_type)
     device = torch.device(device_type)
-    print(device)
     n_gpu = torch.cuda.device_count() 
     if len(device_ids) > n_gpu:
         print(f'GPU configured to use is {device_ids}, but only {n_gpu} are available on this machine')

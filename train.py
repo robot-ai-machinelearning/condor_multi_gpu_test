@@ -9,7 +9,7 @@ import os
 import argparse
 
 from model import DummyModel
-from utils import string_to_list
+from utils import string_to_list, multi_gpu_model_device
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
@@ -46,3 +46,9 @@ testloader = torch.utils.data.DataLoader(
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
            'dog', 'frog', 'horse', 'ship', 'truck')
+
+#Model
+net = DummyModel()
+
+device_ids = string_to_list(args.device_ids)
+net, device = multi_gpu_model_device(device_ids, net)

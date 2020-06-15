@@ -69,6 +69,7 @@ def test(epoch):
         best_acc = acc
 
 if __name__ == '__main__':
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
     parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
     parser.add_argument('--resume', '-r', action='store_true',
